@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" font-family="Inter, 'DejaVu Sans', Arial, sans-serif" xmlns:c2pa="http://c2pa.org/manifest">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1030"/><stop offset="0.55" stop-color="#1a1150"/><stop offset="1" stop-color="#2a0f4f"/></linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#7a8cff" stroke-opacity="0.07" stroke-width="1"/></pattern>
+    <radialGradient id="vig" cx="0.5" cy="0.5" r="0.75"><stop offset="0.6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity="0.55"/></radialGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#8b5cf6" stop-opacity="0.35"/><stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/></radialGradient>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9fb4ff"/></marker>
+    <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0 0L10 5L0 10z" fill="#4ade80"/></marker>
+    <filter id="sh"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity="0.45"/></filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  <ellipse cx="960" cy="560" rx="560" ry="380" fill="url(#glow)"/>
+
+  <text x="80" y="92" fill="#ffffff" font-size="46" font-weight="800">Vector database architecture</text>
+  <text x="80" y="136" fill="#b9c3ff" font-size="24">Gen AI Masterclass · Ep 18 · how a question finds its 3 nearest questions without checking all 10 lakh</text>
+
+  <!-- WRITE PATH -->
+  <text x="80" y="205" fill="#fbbf24" font-size="22" font-weight="700" letter-spacing="2">1 · SAVE (once per question)</text>
+  <g filter="url(#sh)">
+    <rect x="80" y="225" width="250" height="110" rx="18" fill="#1e1b4b" stroke="#fbbf24" stroke-width="2"/>
+    <text x="205" y="272" fill="#fff" font-size="24" font-weight="700" text-anchor="middle">10 lakh saved</text>
+    <text x="205" y="304" fill="#fff" font-size="24" font-weight="700" text-anchor="middle">questions</text>
+    <rect x="420" y="225" width="250" height="110" rx="18" fill="#1e1b4b" stroke="#a78bfa" stroke-width="2"/>
+    <text x="545" y="272" fill="#fff" font-size="24" font-weight="700" text-anchor="middle">Embedding</text>
+    <text x="545" y="304" fill="#fff" font-size="24" font-weight="700" text-anchor="middle">model</text>
+  </g>
+  <line x1="330" y1="280" x2="415" y2="280" stroke="#9fb4ff" stroke-width="3" marker-end="url(#ar)"/>
+  <path d="M670 280 C 760 280, 760 420, 820 430" fill="none" stroke="#9fb4ff" stroke-width="3" marker-end="url(#ar)"/>
+  <text x="545" y="368" fill="#9fb4ff" font-size="19" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace">→ vectors, 1,536 numbers each</text>
+
+  <!-- QUERY PATH -->
+  <text x="80" y="640" fill="#38bdf8" font-size="22" font-weight="700" letter-spacing="2">2 · SEARCH (every query)</text>
+  <g filter="url(#sh)">
+    <rect x="80" y="660" width="250" height="110" rx="18" fill="#0c2a4a" stroke="#38bdf8" stroke-width="2"/>
+    <text x="205" y="705" fill="#fff" font-size="22" font-weight="700" text-anchor="middle">Student asks</text>
+    <text x="205" y="740" fill="#cfe9ff" font-size="20" text-anchor="middle">"Photosynthesis?"</text>
+    <rect x="420" y="660" width="250" height="110" rx="18" fill="#1e1b4b" stroke="#a78bfa" stroke-width="2"/>
+    <text x="545" y="707" fill="#fff" font-size="24" font-weight="700" text-anchor="middle">Same embedding</text>
+    <text x="545" y="739" fill="#fff" font-size="24" font-weight="700" text-anchor="middle">model</text>
+  </g>
+  <line x1="330" y1="715" x2="415" y2="715" stroke="#9fb4ff" stroke-width="3" marker-end="url(#ar)"/>
+  <path d="M670 715 C 760 715, 760 640, 820 630" fill="none" stroke="#9fb4ff" stroke-width="3" marker-end="url(#ar)"/>
+  <text x="545" y="803" fill="#9fb4ff" font-size="19" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace">→ query vector</text>
+
+  <!-- VECTOR DB -->
+  <g filter="url(#sh)">
+    <rect x="825" y="200" width="620" height="640" rx="28" fill="#140f3a" fill-opacity="0.92" stroke="#8b5cf6" stroke-width="3"/>
+  </g>
+  <text x="1135" y="250" fill="#fff" font-size="32" font-weight="800" text-anchor="middle">VECTOR DATABASE</text>
+
+  <!-- storage rows -->
+  <text x="860" y="298" fill="#c4b5fd" font-size="20" font-weight="700">Rows: id · vector · metadata</text>
+  <g font-family="'DejaVu Sans Mono', monospace" font-size="17" style="white-space:pre">
+    <rect x="860" y="310" width="550" height="34" rx="6" fill="#2a2370"/>
+    <text x="872" y="333" fill="#e9e5ff">id</text><text x="935" y="333" fill="#e9e5ff">vector</text><text x="1200" y="333" fill="#e9e5ff">class</text><text x="1290" y="333" fill="#e9e5ff">model</text>
+    <rect x="860" y="348" width="550" height="30" rx="6" fill="#1f1a55"/>
+    <text x="872" y="369" fill="#cbd5ff">101</text><text x="935" y="369" fill="#cbd5ff">[0.12, -0.04, …]</text><text x="1200" y="369" fill="#cbd5ff">10</text><text x="1290" y="369" fill="#cbd5ff">emb-v3</text>
+    <rect x="860" y="382" width="550" height="30" rx="6" fill="#1f1a55"/>
+    <text x="872" y="403" fill="#cbd5ff">102</text><text x="935" y="403" fill="#cbd5ff">[0.31, 0.08, …]</text><text x="1200" y="403" fill="#cbd5ff">9</text><text x="1290" y="403" fill="#cbd5ff">emb-v3</text>
+  </g>
+
+  <!-- HNSW floors -->
+  <text x="860" y="455" fill="#c4b5fd" font-size="20" font-weight="700">ANN index: HNSW (floors of a graph)</text>
+  <g>
+    <polygon points="900,480 1300,480 1270,525 870,525" fill="#4c1d95" fill-opacity="0.55" stroke="#a78bfa"/>
+    <polygon points="900,545 1300,545 1270,590 870,590" fill="#3b2a8f" fill-opacity="0.55" stroke="#a78bfa"/>
+    <polygon points="900,610 1300,610 1270,655 870,655" fill="#2a2a8a" fill-opacity="0.55" stroke="#a78bfa"/>
+    <text x="1300" y="500" fill="#c4b5fd" font-size="16">few nodes,</text><text x="1300" y="519" fill="#c4b5fd" font-size="16">long links</text>
+    <text x="1290" y="642" fill="#c4b5fd" font-size="16">all 10 lakh</text>
+    <g fill="#fde68a">
+      <circle cx="960" cy="502" r="6"/><circle cx="1260" cy="502" r="6"/>
+      <circle cx="940" cy="567" r="5"/><circle cx="1050" cy="567" r="5"/><circle cx="1160" cy="567" r="5"/><circle cx="1280" cy="567" r="5"/>
+      <circle cx="920" cy="632" r="4"/><circle cx="975" cy="632" r="4"/><circle cx="1030" cy="632" r="4"/><circle cx="1085" cy="632" r="4"/><circle cx="1140" cy="632" r="4"/><circle cx="1195" cy="632" r="4"/><circle cx="1250" cy="632" r="4"/>
+    </g>
+    <path d="M960 502 L1260 502" stroke="#fde68a" stroke-opacity="0.5" stroke-width="2"/>
+    <path d="M1260 502 L1160 567 L1140 632 L1195 632" fill="none" stroke="#4ade80" stroke-width="4"/>
+    <circle cx="1195" cy="632" r="9" fill="none" stroke="#4ade80" stroke-width="3"/>
+  </g>
+
+  <!-- filter + db jobs -->
+  <g font-size="18" fill="#e9e5ff">
+    <rect x="860" y="685" width="170" height="44" rx="22" fill="#312e81" stroke="#818cf8"/><text x="945" y="714" text-anchor="middle">filter: class = 10</text>
+    <rect x="1040" y="685" width="215" height="44" rx="22" fill="#312e81" stroke="#818cf8"/><text x="1147" y="714" text-anchor="middle">insert · update · delete</text>
+    <rect x="1265" y="685" width="150" height="44" rx="22" fill="#312e81" stroke="#818cf8"/><text x="1340" y="714" text-anchor="middle">disk · replicas</text>
+  </g>
+  <text x="1135" y="780" fill="#b9c3ff" font-size="19" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace">knobs: M · ef_construction · ef_search</text>
+  <text x="1135" y="812" fill="#4ade80" font-size="20" text-anchor="middle" font-weight="700">touches ~few thousand vectors, not 10,00,000</text>
+
+  <!-- results -->
+  <path d="M1445 560 L1530 560" stroke="#4ade80" stroke-width="3" marker-end="url(#arg)"/>
+  <g filter="url(#sh)">
+    <rect x="1535" y="400" width="300" height="250" rx="20" fill="#0f2f24" stroke="#4ade80" stroke-width="2"/>
+  </g>
+  <text x="1685" y="445" fill="#fff" font-size="26" font-weight="800" text-anchor="middle">Top 3 (k = 3)</text>
+  <g font-size="19" fill="#d1fae5"><text x="1560" y="490">1. Photosynthesis in plants…</text><text x="1560" y="525">2. Role of chlorophyll…</text><text x="1560" y="560">3. Definition of photo…</text></g>
+  <text x="1685" y="615" fill="#86efac" font-size="18" text-anchor="middle">~20 ms · recall@10 ≈ 0.98</text>
+
+  <!-- brute force contrast -->
+  <g filter="url(#sh)"><rect x="1535" y="200" width="300" height="160" rx="20" fill="#3a0f1e" stroke="#f87171" stroke-width="2"/></g>
+  <text x="1685" y="240" fill="#fecaca" font-size="22" font-weight="800" text-anchor="middle">Brute force (problem)</text>
+  <text x="1685" y="278" fill="#fecaca" font-size="18" text-anchor="middle" font-family="'DejaVu Sans Mono', monospace">vectors @ query</text>
+  <text x="1685" y="310" fill="#fecaca" font-size="18" text-anchor="middle">checks all 10,00,000</text>
+  <text x="1685" y="338" fill="#fecaca" font-size="18" text-anchor="middle">150+ crore multiplies</text>
+
+  <!-- options strip -->
+  <text x="80" y="905" fill="#e9e5ff" font-size="22" font-weight="700" letter-spacing="2">PICK ONE (all from Python)</text>
+  <g font-size="19" font-family="'DejaVu Sans Mono', monospace">
+    <rect x="80" y="925" width="560" height="100" rx="16" fill="#1e1b4b" stroke="#60a5fa"/>
+    <text x="100" y="962" fill="#fff" font-family="Inter, 'DejaVu Sans', sans-serif" font-size="22" font-weight="700">Postgres + pgvector</text>
+    <text x="100" y="998" fill="#bfdbfe">psycopg · USING hnsw · ORDER BY &lt;=&gt;</text>
+    <rect x="680" y="925" width="560" height="100" rx="16" fill="#1e1b4b" stroke="#fbbf24"/>
+    <text x="700" y="962" fill="#fff" font-family="Inter, 'DejaVu Sans', sans-serif" font-size="22" font-weight="700">Elasticsearch / OpenSearch</text>
+    <text x="700" y="998" fill="#fde68a">es.search(knn={k, num_candidates})</text>
+    <rect x="1280" y="925" width="560" height="100" rx="16" fill="#1e1b4b" stroke="#f472b6"/>
+    <text x="1300" y="962" fill="#fff" font-family="Inter, 'DejaVu Sans', sans-serif" font-size="22" font-weight="700">Pinecone · Qdrant · Weaviate · Milvus · Chroma</text>
+    <text x="1300" y="998" fill="#fbcfe8">client.query_points(q, limit=3)</text>
+  </g>
+  <text x="1840" y="1062" fill="#8b93c9" font-size="18" text-anchor="end">@DecodeWithVipin1306</text>
+  <rect width="1920" height="1080" fill="url(#vig)" pointer-events="none"/>
+<metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo2NjVlNDMxMy0wM2FjLTQ1M2EtYTllZi1jYTY5YTdmODIxYmMAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaIvLUDkM+Hm62YYAOGcs/tMAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDpjMTJiYTE2MC01MGI5LTRmMTUtYWYzMi0wZjc5YjA3MWQ3MTNscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoZz4T9cRlUz0B4uMTkS8OSwAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggfuMnGJg533HdMxX9t+sUSu807jtcoRo5Mb+JUY684mOkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaAA6rt6YP6eZZXqPzttqiR0AAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIKD1dfladPc7jH26w6ND7B4Lz4BMbl0PdgtgQTPggEENZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GSneZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjY2NWU0MzEzLTAzYWMtNDUzYS1hOWVmLWNhNjlhN2Y4MjFiYy9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmFlYTY2N2FmLTU4ZjAtNDFlNS1hYjI4LTQ2MDEzZjJiMTZlZHJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCB+4ycYmDnfcd0zFf236xRK7zTuO1yhGjkxv4lRjrziY6JjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFgg2JRmBTSk6kCNCrBD77kaiqflH2u/Zts8H0Lvywyugz2iY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggSlbP+0MY+eW9ckTnQ8S8rUHloXlZrrHLw+87NH+SJgZ0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQM02mk9ZH3k/AYc6ZkBdk0Qtu3tULSZkf2p1IjneObwCwS5ZTI7qxtL4yl/g5r9oeCKngoymdKtB20JMskvEM4w=</c2pa:manifest></metadata></svg>

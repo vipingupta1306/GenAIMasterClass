@@ -1,0 +1,7 @@
+numpy
+faiss-cpu
+hnswlib
+psycopg[binary]
+pgvector
+elasticsearch>=8,<10
+qdrant-client
