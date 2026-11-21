@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" font-family="Inter, 'Segoe UI', 'DejaVu Sans', Arial, sans-serif" xmlns:c2pa="http://c2pa.org/manifest">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1030"/>
+      <stop offset="0.55" stop-color="#1a1446"/>
+      <stop offset="1" stop-color="#2a1050"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#7aa2ff" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="vig" cx="0.5" cy="0.5" r="0.75">
+      <stop offset="0.6" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.55"/>
+    </radialGradient>
+    <radialGradient id="glowA" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#38bdf8" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#38bdf8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#cbd5ff"/>
+    </marker>
+    <style>
+      .box{fill:#141a44;fill-opacity:.92;stroke-width:2.5}
+      .ing{stroke:#38bdf8}
+      .qry{stroke:#a78bfa}
+      .ans{stroke:#34d399}
+      .t{fill:#f1f5ff;font-size:27px;font-weight:700}
+      .s{fill:#b9c3f0;font-size:19px}
+      .c{font-variant-ligatures:none;fill:#7dd3fc;font-size:19px;font-family:'JetBrains Mono','Fira Code','DejaVu Sans Mono',Consolas,monospace}
+      .cq{font-variant-ligatures:none;fill:#c4b5fd;font-size:19px;font-family:'JetBrains Mono','Fira Code','DejaVu Sans Mono',Consolas,monospace}
+      .lane{font-size:24px;font-weight:700;letter-spacing:2px}
+      .ln{stroke:#cbd5ff;stroke-width:3;fill:none}
+      .chip{fill:#0f1538;stroke:#475099;stroke-width:1.5}
+    </style>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+  <ellipse cx="560" cy="280" rx="700" ry="260" fill="url(#glowA)"/>
+  <ellipse cx="1200" cy="790" rx="800" ry="280" fill="url(#glowB)"/>
+
+  <!-- Title -->
+  <text x="60" y="82" fill="#ffffff" font-size="46" font-weight="800">RAG from scratch · architecture</text>
+  <text x="62" y="120" class="s" font-size="22">Retrieve → Augment → Generate · Python + Postgres (pgvector) · no framework</text>
+
+  <!-- Lane labels -->
+  <text x="60" y="190" class="lane" fill="#38bdf8">INGESTION · runs once, and again for every new document</text>
+  <text x="60" y="690" class="lane" fill="#a78bfa">QUERY · runs on every question</text>
+
+  <!-- ===== Ingestion lane (y 215-355) ===== -->
+  <g>
+    <rect class="box ing" x="60" y="215" width="230" height="140" rx="18"/>
+    <text class="t" x="175" y="262" text-anchor="middle">Documents</text>
+    <text class="s" x="175" y="294" text-anchor="middle">PDFs · notes</text>
+    <text class="s" x="175" y="320" text-anchor="middle">circulars</text>
+
+    <rect class="box ing" x="330" y="215" width="230" height="140" rx="18"/>
+    <text class="t" x="445" y="262" text-anchor="middle">1 · Load</text>
+    <text class="c" x="445" y="300" text-anchor="middle">load_pages()</text>
+    <text class="s" x="445" y="330" text-anchor="middle">page by page</text>
+
+    <rect class="box ing" x="600" y="215" width="230" height="140" rx="18"/>
+    <text class="t" x="715" y="262" text-anchor="middle">2 · Clean</text>
+    <text class="c" x="715" y="300" text-anchor="middle">clean()</text>
+    <text class="s" x="715" y="330" text-anchor="middle">drop header/footer</text>
+
+    <rect class="box ing" x="870" y="215" width="230" height="140" rx="18"/>
+    <text class="t" x="985" y="262" text-anchor="middle">3 · Chunk</text>
+    <text class="c" x="985" y="300" text-anchor="middle">split(400)</text>
+    <text class="s" x="985" y="330" text-anchor="middle">~400 tokens each</text>
+
+    <rect class="box ing" x="1140" y="215" width="230" height="140" rx="18"/>
+    <text class="t" x="1255" y="262" text-anchor="middle">4 · Embed</text>
+    <text class="c" x="1255" y="300" text-anchor="middle">embed()</text>
+    <text class="s" x="1255" y="330" text-anchor="middle">1,536 numbers</text>
+
+    <path class="ln" d="M290 285H326" marker-end="url(#arr)"/>
+    <path class="ln" d="M560 285H596" marker-end="url(#arr)"/>
+    <path class="ln" d="M830 285H866" marker-end="url(#arr)"/>
+    <path class="ln" d="M1100 285H1136" marker-end="url(#arr)"/>
+    <!-- store -->
+    <path class="ln" d="M1370 285H1530V392" marker-end="url(#arr)"/>
+    <rect class="chip" x="1400" y="240" width="260" height="34" rx="8"/>
+    <text class="c" x="1530" y="263" text-anchor="middle">5 · store: INSERT</text>
+  </g>
+
+  <!-- ===== Vector database ===== -->
+  <g filter="url(#soft)">
+    <path d="M1400 420 v150 a130 34 0 0 0 260 0 v-150" fill="#10305a" stroke="#38bdf8" stroke-width="3"/>
+    <ellipse cx="1530" cy="420" rx="130" ry="34" fill="#1b4a80" stroke="#38bdf8" stroke-width="3"/>
+  </g>
+  <text class="t" x="1530" y="500" text-anchor="middle">Postgres</text>
+  <text class="t" x="1530" y="532" text-anchor="middle" font-size="24">+ pgvector</text>
+  <text class="s" x="1530" y="562" text-anchor="middle" font-size="17">HNSW index</text>
+  <text class="c" x="1370" y="430" font-size="17" text-anchor="end">table: chunks</text>
+  <text class="s" x="1370" y="456" font-size="16" text-anchor="end">text · file · page</text>
+  <text class="s" x="1370" y="478" font-size="16" text-anchor="end">date · audience</text>
+  <text class="s" x="1370" y="500" font-size="16" text-anchor="end">superseded</text>
+  <text class="s" x="1370" y="522" font-size="16" text-anchor="end">embedding vector(1536)</text>
+
+  <!-- ===== Query lane (y 720-860) ===== -->
+  <g>
+    <rect class="box qry" x="60" y="720" width="230" height="140" rx="18"/>
+    <text class="t" x="175" y="767" text-anchor="middle">Question</text>
+    <text class="s" x="175" y="800" text-anchor="middle">"Practical marks</text>
+    <text class="s" x="175" y="824" text-anchor="middle">this year?"</text>
+
+    <rect class="box qry" x="330" y="720" width="230" height="140" rx="18"/>
+    <text class="t" x="445" y="767" text-anchor="middle">Embed</text>
+    <text class="cq" x="445" y="804" text-anchor="middle">embed(q)</text>
+    <text class="s" x="445" y="834" text-anchor="middle">same model as step 4</text>
+
+    <rect class="box qry" x="600" y="720" width="230" height="140" rx="18"/>
+    <text class="t" x="715" y="767" text-anchor="middle">Retrieve</text>
+    <text class="cq" x="715" y="804" text-anchor="middle">search(q, k=4)</text>
+    <text class="s" x="715" y="834" text-anchor="middle">nearest by cosine</text>
+
+    <rect class="box qry" x="870" y="720" width="230" height="140" rx="18"/>
+    <text class="t" x="985" y="767" text-anchor="middle">Augment</text>
+    <text class="cq" x="985" y="804" text-anchor="middle">build_prompt()</text>
+    <text class="s" x="985" y="834" text-anchor="middle">~1,600 tokens</text>
+
+    <rect class="box qry" x="1140" y="720" width="230" height="140" rx="18"/>
+    <text class="t" x="1255" y="767" text-anchor="middle">Generate</text>
+    <text class="cq" x="1255" y="804" text-anchor="middle">llm()</text>
+    <text class="s" x="1255" y="834" text-anchor="middle">temperature=0</text>
+
+    <rect class="box ans" x="1410" y="720" width="450" height="140" rx="18"/>
+    <text class="t" x="1635" y="767" text-anchor="middle">Answer + source</text>
+    <text class="s" x="1635" y="804" text-anchor="middle" fill="#a7f3d0">"Science practical: 40 marks [1]"</text>
+    <text class="s" x="1635" y="834" text-anchor="middle">[1] Circular, 12 Nov, page 2</text>
+
+    <path class="ln" d="M290 790H326" marker-end="url(#arr)"/>
+    <path class="ln" d="M560 790H596" marker-end="url(#arr)"/>
+    <path class="ln" d="M830 790H866" marker-end="url(#arr)"/>
+    <path class="ln" d="M1100 790H1136" marker-end="url(#arr)"/>
+    <path class="ln" d="M1370 790H1406" marker-end="url(#arr)"/>
+    <!-- search <-> DB -->
+    <path class="ln" d="M715 720V640H1530V608" marker-end="url(#arr)" stroke-dasharray="9 7"/>
+    <path class="ln" d="M745 640V716" marker-end="url(#arr)" stroke-dasharray="9 7"/>
+    <text class="s" x="1000" y="628" text-anchor="middle" font-size="17">SQL via psycopg · returns 4 nearest chunks</text>
+  </g>
+
+  <!-- prompt anatomy -->
+  <g>
+    <rect class="chip" x="870" y="890" width="500" height="118" rx="12"/>
+    <text class="s" x="890" y="920" font-size="17" fill="#e9d5ff" font-weight="700">prompt = </text>
+    <text class="s" x="890" y="946" font-size="16">system: answer ONLY from context, else "Not found"</text>
+    <text class="s" x="890" y="970" font-size="16">user: [1]..[4] context chunks + question (last)</text>
+    <text class="s" x="890" y="994" font-size="16">cite sources like [1]</text>
+  </g>
+
+  <!-- production guards -->
+  <g>
+    <rect class="chip" x="60" y="890" width="770" height="118" rx="12"/>
+    <text class="s" x="80" y="920" font-size="17" fill="#fde68a" font-weight="700">4 hidden details · solution inside search_v2() / rag_v2()</text>
+    <text class="c" x="80" y="948" font-size="16">1 score &gt;= min_score, else "Not found" (no LLM call)</text>
+    <text class="c" x="80" y="972" font-size="16">2 WHERE superseded = false     3 print retrieved text</text>
+    <text class="c" x="80" y="996" font-size="16">4 AND audience IN ('all', %s)  -- permission</text>
+  </g>
+
+  <!-- freshness note -->
+  <g>
+    <rect class="chip" x="1410" y="890" width="450" height="118" rx="12"/>
+    <text class="s" x="1430" y="920" font-size="17" fill="#a7f3d0" font-weight="700">New document? No retraining.</text>
+    <text class="c" x="1430" y="948" font-size="16">ingest("circular_new.pdf")</text>
+    <text class="c" x="1430" y="972" font-size="16">DELETE ... WHERE file = old</text>
+    <text class="s" x="1430" y="996" font-size="16">The model is never touched.</text>
+  </g>
+
+  <text x="1860" y="1056" text-anchor="end" fill="#8b93c9" font-size="18">@DecodeWithVipin1306 · Gen AI Masterclass Ep 19</text>
+  <rect width="1920" height="1080" fill="url(#vig)" pointer-events="none"/>
+<metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYToyZjk3NWQ0OS05NjI0LTRmODctYjM1Yy00ZTBlOGRiNzYzYWIAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaDKbkwp3d8otgr7mKOaKNZMAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo5NjlkM2Q5My1kNTI2LTRmOGYtOTk4NS0xMjA0OTQ3NTFiNDlscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoVj11S5uqzYPfcU46ZSK9fgAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggFaOl3ItEBodQHuaV3lZZPQYGkGyzpTlcMigxZ9ycHaykZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaEjrGI5I3pRH06GPTPyctu8AAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIF35CQgDWSUtyr4OljPBYEjbHOmYeb8YkKVppNi7DLI5ZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GSmMZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjJmOTc1ZDQ5LTk2MjQtNGY4Ny1iMzVjLTRlMGU4ZGI3NjNhYi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOmFlMDQxOGUwLWQxZGMtNGNhNy1hZTAzLTQ0YmUzZGYyNDhjMnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCAVo6Xci0QGh1Ae5pXeVlk9BgaQbLOlOVwyKDFn3JwdrKJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFgg21lWCdOWyCQ4uPJd/pdqNW2rF3WhZxuhrXr47XXovIyiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggyIAkejz3iBNIEHiiSb9TM76rMVBQZqji5QoAKQxTG2R0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQDikf9vbT63FO9eVa2Hkafq5cpt8rX4x0xIiQFqnX995ebC+0lh8xMbrtoerpdRTM5IeDO8IX5SDt0tOWQq0meA=</c2pa:manifest></metadata></svg>
